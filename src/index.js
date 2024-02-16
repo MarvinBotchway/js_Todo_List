@@ -1,4 +1,3 @@
-import html from "./index.html";
 import "./styles.css";
 
 (function component() {
