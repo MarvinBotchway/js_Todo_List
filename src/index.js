@@ -1,5 +1,6 @@
 import "./styles.css";
 import Todo from "./Todo.js";
+import TodoCard from "./TodoCard.js";
 
 let todo = new Todo(
   "Cook",
@@ -9,13 +10,6 @@ let todo = new Todo(
 );
 
 const Content = document.getElementById("content");
-const Title = document.createElement("h3");
-const Description = document.createElement("h3");
-const TodoDate = document.createElement("h3");
-const priority = document.createElement("h3");
+const todoCard = TodoCard(todo);
 
-Title.textContent = todo.title;
-Description.textContent = todo.description;
-
-Content.appendChild(Title);
-Content.appendChild(Description);
+Content.appendChild(todoCard);
