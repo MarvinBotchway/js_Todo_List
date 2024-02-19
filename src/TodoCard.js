@@ -4,6 +4,7 @@ export default function TodoCard(Todo) {
   const description = document.createElement("p");
   const dueDate = document.createElement("p");
   const priority = document.createElement("p");
+  const bottomContainer = document.createElement("div");
 
   todoCard.classList += "card";
 
@@ -11,11 +12,14 @@ export default function TodoCard(Todo) {
   description.textContent = Todo.description;
   dueDate.textContent = Todo.dueDate.toString();
   priority.textContent = Todo.priority;
+  bottomContainer.id = "bottom-container";
+
+  bottomContainer.append(dueDate);
+  bottomContainer.append(priority);
 
   todoCard.append(title);
   todoCard.append(description);
-  todoCard.append(dueDate);
-  todoCard.append(priority);
+  todoCard.append(bottomContainer);
 
   return todoCard;
 }

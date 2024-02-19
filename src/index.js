@@ -26,9 +26,9 @@ let todo2 = new Todo(
 
 const Content = document.getElementById("content");
 
-const todoCard = TodoCard(todo);
-const todoCard1 = TodoCard(todo1);
-const todoCard2 = TodoCard(todo2);
+const todoCard = TodoCard(todo.getSummary());
+const todoCard1 = TodoCard(todo1.getSummary());
+const todoCard2 = TodoCard(todo2.getSummary());
 
 Content.appendChild(ActionArea);
 Content.appendChild(todoCard);

@@ -3,12 +3,18 @@
   margin: 0;
 }
 
+html {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
 #content {
   width: 60%;
   margin: 10rem auto;
   background-color: white;
-  border: 1px solid whitesmoke;
+  /* border: 1px solid rgba(255, 166, 0, 0.288); */
   border-radius: 6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 #action-area {
@@ -23,20 +29,42 @@
   font-size: medium;
   font-weight: 400;
   border-radius: 4px;
-  border: 2px whitesmoke solid;
+  border: 1px whitesmoke solid;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 2px 0px;
 }
 #add-todo:hover {
   background-color: #f9fafb;
   color: orange;
 }
 .card {
-  padding: 1.25rem;
+  padding: 1rem;
   margin: 0.5rem 0;
-  background-color: #f9fafba1;
+  background-color: #f9fafba4;
+  border-right: 4px solid #f9fafba4;
   width: auto;
+}
+.card > p {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 0 0.5rem;
+}
+.card > h3 {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
 }
 
 .card:hover {
   background-color: #f9fafb;
-  border-right: 6px solid orange;
+  border-right: 4px solid orange;
+}
+
+#bottom-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#bottom-container > p {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 0 0.5rem;
 }
