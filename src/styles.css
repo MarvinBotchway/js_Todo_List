@@ -7,12 +7,22 @@ html {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
-
+button {
+  background-color: white;
+  padding: 2px;
+  border-radius: 2px;
+  border: 1px black solid;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 2px 0px;
+}
+button:hover {
+  background-color: #f8f8f8;
+  border-bottom: 1px orange solid;
+}
 #content {
   width: 60%;
   margin: 10rem auto;
   background-color: white;
-  /* border: 1px solid rgba(255, 166, 0, 0.288); */
+  border: 1px solid black;
   border-radius: 6px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -21,6 +31,7 @@ html {
   display: flex;
   width: auto;
   height: 6rem;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 #add-todo {
   margin: auto;
@@ -33,14 +44,14 @@ html {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 2px 0px;
 }
 #add-todo:hover {
-  background-color: #f9fafb;
-  color: orange;
+  background-color: #f8f8f8;
+  border-bottom: 2px orange solid;
 }
 .card {
   padding: 1rem;
   margin: 0.5rem 0;
   background-color: #f9fafba4;
-  border-right: 4px solid #f9fafba4;
+  border-left: 4px solid black;
   width: auto;
 }
 .card > p {
@@ -54,16 +65,51 @@ html {
 }
 
 .card:hover {
-  background-color: #f9fafb;
-  border-right: 4px solid orange;
+  background-color: #f8f8f8;
+  border-left: 4px solid orange;
 }
 
 #bottom-container {
   display: flex;
   flex-direction: row;
+  border-top: 1px white solid;
+  margin-top: 0.25rem;
+  padding-top: 0.25rem;
   justify-content: space-between;
+  align-items: center;
 }
 #bottom-container > p {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 0 0.5rem;
+}
+#btns-container {
+  width: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+#btns-container > span {
+  color: red;
+}
+
+#btns-container > span:hover {
+  color: white;
+  background-color: red;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+#middle-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#middle-container > button {
+  width: 3rem;
+}
+
+#middle-container > p {
   font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.6);
   padding: 0 0.5rem;
