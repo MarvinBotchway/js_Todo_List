@@ -2,6 +2,7 @@ import "./styles.css";
 import Todo from "./Todo.js";
 import TodoCard from "./TodoCard.js";
 import ActionArea from "./ActionArea.js";
+import Nav from "./Nav.js";
 
 let todo = new Todo(
   "Cook",
@@ -25,10 +26,13 @@ let todo2 = new Todo(
 );
 
 const Content = document.getElementById("content");
+const Header = document.getElementById("header");
 
 const todoCard = TodoCard(todo.getSummary());
 const todoCard1 = TodoCard(todo1.getSummary());
 const todoCard2 = TodoCard(todo2.getSummary());
+
+Header.appendChild(Nav);
 
 Content.appendChild(ActionArea);
 Content.appendChild(todoCard);
