@@ -9,11 +9,13 @@ const Header = document.getElementById("header");
 
 Header.appendChild(Nav);
 
+Content.appendChild(ActionArea("list"));
+
 Lists.forEach((listCard) => {
   Content.appendChild(listCard);
 });
 
-Content.appendChild(ActionArea);
+Content.appendChild(ActionArea("todo"));
 
 Todos.forEach((todoCard) => {
   Content.appendChild(todoCard);

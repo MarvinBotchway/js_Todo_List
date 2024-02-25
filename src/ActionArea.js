@@ -1,12 +1,14 @@
-export default (function ActionArea() {
+export default function ActionArea(type) {
   const actionArea = document.createElement("div");
-  const addTodo = document.createElement("button");
+  const addBtn = document.createElement("button");
+  let btnTxt = type;
 
   actionArea.id = "action-area";
-  addTodo.id = "add-todo";
-  addTodo.textContent = "Add Todo";
+  addBtn.classList += "add-btn";
+  btnTxt = btnTxt == "list" ? "Add List" : "Add Todo";
+  addBtn.textContent = btnTxt;
 
-  actionArea.appendChild(addTodo);
+  actionArea.appendChild(addBtn);
 
   return actionArea;
-})();
+}

@@ -33,7 +33,7 @@ button:hover {
   height: 6rem;
   background-color: rgba(0, 0, 0, 0.7);
 }
-#add-todo {
+.add-btn {
   margin: auto;
   background-color: white;
   padding: 0.5rem;
@@ -43,7 +43,7 @@ button:hover {
   border: 1px whitesmoke solid;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 2px 0px;
 }
-#add-todo:hover {
+.add-btn:hover {
   background-color: #f8f8f8;
   border-bottom: 2px orange solid;
 }
