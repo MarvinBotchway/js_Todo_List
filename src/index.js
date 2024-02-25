@@ -18,5 +18,3 @@ Content.appendChild(ActionArea);
 Todos.forEach((todoCard) => {
   Content.appendChild(todoCard);
 });
-
-Content.appendChild(Lists);
