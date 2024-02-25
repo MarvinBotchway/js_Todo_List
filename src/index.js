@@ -2,6 +2,7 @@ import "./styles.css";
 import Todo from "./Todo.js";
 import TodoCard from "./TodoCard.js";
 import ActionArea from "./ActionArea.js";
+import Lists from "./Lists.js";
 import Nav from "./Nav.js";
 
 let todo = new Todo(
@@ -34,7 +35,13 @@ const todoCard2 = TodoCard(todo2.getSummary());
 
 Header.appendChild(Nav);
 
+Lists.forEach((listCard) => {
+  Content.appendChild(listCard);
+});
+
 Content.appendChild(ActionArea);
 Content.appendChild(todoCard);
 Content.appendChild(todoCard1);
 Content.appendChild(todoCard2);
+
+Content.appendChild(Lists);
