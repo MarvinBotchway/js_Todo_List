@@ -141,4 +141,5 @@ button:hover {
 
 .active-button {
   background-color: #f8f8f8;
+  color: orange;
 }

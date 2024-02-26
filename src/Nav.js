@@ -9,7 +9,7 @@ export default (function Nav() {
 
   listsBtn.textContent = "Lists";
   currentBtn.textContent = "Current";
-  currentBtn.classList += "active-button";
+  listsBtn.classList += "active-button";
 
   nav.appendChild(listsBtn);
   nav.appendChild(currentBtn);
