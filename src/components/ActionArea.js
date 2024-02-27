@@ -6,6 +6,9 @@ export default function ActionArea(type) {
   actionArea.id = "action-area";
   addBtn.classList += "add-btn";
   btnTxt = btnTxt == "list" ? "Add List" : "Add Todo";
+
+  if (btnTxt == "Add List") addBtn.id = "add-list";
+  else if (btnTxt == "Add Todo") addBtn.id = "add-todo";
   addBtn.textContent = btnTxt;
 
   actionArea.appendChild(addBtn);
