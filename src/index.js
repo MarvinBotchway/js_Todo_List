@@ -1,8 +1,8 @@
 import "./styles.css";
-import Todos from "./Todos.js";
-import ActionArea from "./ActionArea.js";
-import Lists from "./Lists.js";
-import Nav from "./Nav.js";
+import Todos from "./controllers/TodosController.js";
+import ActionArea from "./components/ActionArea.js";
+import Lists from "./controllers/ListsController.js";
+import Nav from "./components/Nav.js";
 
 const Content = document.getElementById("content");
 const Header = document.getElementById("header");
