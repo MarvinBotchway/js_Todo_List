@@ -3,7 +3,6 @@ import Todos from "./controllers/TodosController.js";
 import ActionArea from "./components/ActionArea.js";
 import Lists from "./controllers/ListsController.js";
 import Nav from "./components/Nav.js";
-import ListFormModal from "./components/ListFormModal.js";
 
 const Content = document.getElementById("content");
 const Header = document.getElementById("header");
@@ -44,22 +43,3 @@ function showPage(id) {
     });
   }
 }
-
-const addBtn = document.getElementById("add-list");
-
-addBtn.addEventListener("click", () => {
-  Content.appendChild(ListFormModal);
-
-  const Close = document.getElementById("close");
-  const Modal = document.querySelector(".modal");
-
-  Close.onclick = function () {
-    Content.removeChild(ListFormModal);
-  };
-
-  window.onclick = function (e) {
-    if (e.target == Modal) {
-      Content.removeChild(ListFormModal);
-    }
-  };
-});
