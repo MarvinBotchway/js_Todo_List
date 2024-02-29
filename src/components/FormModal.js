@@ -1,5 +1,6 @@
 import ActionArea from "./ActionArea.js";
 import ListForm from "./ListForm.js";
+import TodoForm from "./TodoForm.js";
 
 export default function FormModal(type) {
   const Content = document.getElementById("content");
@@ -32,11 +33,10 @@ export default function FormModal(type) {
   Container.appendChild(Title);
 
   if (type == "list") FormContainer.appendChild(ListForm);
+  else FormContainer.appendChild(TodoForm);
 
-  // if (ActionArea("list")) Container.appendChild(ListForm);
   Container.appendChild(FormContainer);
   FormModal.appendChild(Container);
-  console.log(addBtn);
 
   return FormModal;
 }

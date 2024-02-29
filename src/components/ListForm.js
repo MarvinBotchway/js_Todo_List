@@ -5,7 +5,7 @@ export default (function ListForm() {
   const SubmitBtn = document.createElement("button");
 
   Label.textContent = "List Name";
-  Form.classList += "list-form";
+  Form.classList += "form list-form";
   Form.action = "submit";
   Form.method = "post";
   Input.type = "text";

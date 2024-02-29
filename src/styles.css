@@ -170,7 +170,7 @@ button:hover {
   padding: 1.5rem;
   border: 1px solid orange;
   border-radius: 6px;
-  width: 70%;
+  width: 50%;
 }
 
 .close {
@@ -208,9 +208,30 @@ button:hover {
   font-size: large;
 }
 
-.list-form > button {
+.form > button {
   margin: 0 auto;
   width: 5rem;
   height: 2rem;
   font-size: large;
+}
+
+.todo-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-form > label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: large;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.todo-form > label > input {
+  width: 80%;
+  height: 2rem;
+  font-size: large;
+  padding: 0 0.5rem;
 }
