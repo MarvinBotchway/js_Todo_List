@@ -1,7 +1,8 @@
 import "./styles.css";
 import Todos from "./controllers/TodosController.js";
 import ActionArea from "./components/ActionArea.js";
-import Lists from "./controllers/ListsController.js";
+import { listsArray, addList } from "./ListServices.js";
+import ListsCard from "./components/ListsCard.js";
 import Nav from "./components/Nav.js";
 
 const Content = document.getElementById("content");
@@ -11,7 +12,16 @@ Header.appendChild(Nav);
 
 Content.appendChild(ActionArea("list"));
 
-Lists.forEach((listCard) => {
+const getListCards = (function () {
+  let listCards = [];
+  listsArray.forEach((list) => {
+    listCards.push(ListsCard(list));
+  });
+
+  return listCards;
+})();
+
+getListCards.forEach((listCard) => {
   Content.appendChild(listCard);
 });
 
@@ -32,7 +42,7 @@ function showPage(id) {
   if (id == "lists-btn") {
     Content.appendChild(ActionArea("list"));
 
-    Lists.forEach((listCard) => {
+    getListCards.forEach((listCard) => {
       Content.appendChild(listCard);
     });
   } else if (id == "current-btn") {

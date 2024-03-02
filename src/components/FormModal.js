@@ -1,5 +1,8 @@
+import { addList } from "../ListServices.js";
+import List from "../models/List.js";
 import ActionArea from "./ActionArea.js";
 import ListForm from "./ListForm.js";
+import ListsCard from "./ListsCard.js";
 import TodoForm from "./TodoForm.js";
 
 export default function FormModal(type) {
@@ -37,6 +40,15 @@ export default function FormModal(type) {
 
   Container.appendChild(FormContainer);
   FormModal.appendChild(Container);
+
+  ListForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const ListTitle = document.querySelector("#title");
+    let list = new List(ListTitle.value);
+    addList(list);
+    Content.removeChild(FormModal);
+    Content.appendChild(ListsCard(list));
+  });
 
   return FormModal;
 }
