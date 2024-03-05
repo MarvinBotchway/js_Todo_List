@@ -1,4 +1,4 @@
-import { listsArray, addList } from "../ListServices.js";
+import { listsArray, addList } from "../Services.js";
 import List from "../models/List";
 
 export default (function ListForm() {
