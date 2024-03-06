@@ -21,8 +21,6 @@ export default (function TodoForm() {
   SubmitBtn.textContent = "Add";
 
   Form.classList += "form todo-form";
-  // Form.action = "submit";
-  // Form.method = "post";
 
   TitleInput.type = "text";
   DescriptionInput.type = "text";

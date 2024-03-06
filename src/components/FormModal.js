@@ -1,7 +1,6 @@
-import { addList, clearPage, createListsPage } from "../Services.js";
+import { addList, clearPage, createPage } from "../Services.js";
 import List from "../models/List.js";
 import ListForm from "./ListForm.js";
-import ListsCard from "./ListCard.js";
 import TodoForm from "./TodoForm.js";
 
 export default function FormModal(type) {
@@ -47,9 +46,8 @@ export default function FormModal(type) {
       let list = new List(ListTitle.value);
       let lists = addList(list);
       clearPage();
-      createListsPage(lists);
+      createPage(lists, "list");
     }
-    // Content.appendChild(ListsCard(list));
   });
 
   return FormModal;

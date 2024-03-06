@@ -1,5 +1,4 @@
 import ListCard from "./components/ListCard.js";
-import List from "./models/List.js";
 import ActionArea from "./components/ActionArea.js";
 import Lists from "./data/Lists.js";
 import TodoCard from "./components/TodoCard.js";
@@ -9,49 +8,28 @@ const Content = document.getElementById("content");
 
 const addList = function (list) {
   Lists.push(list);
-  console.log(Lists);
   return Lists;
 };
 
-const createListCards = function (lists) {
-  let listCards = [];
-  console.log(Lists);
-  Lists.forEach((list) => {
-    listCards.push(ListCard(list));
+const createCards = function (items, type) {
+  let cards = [];
+  items.forEach((item) => {
+    if (type == "list") cards.push(ListCard(item));
+    else cards.push(TodoCard(item.getSummary()));
   });
 
-  return listCards;
+  return cards;
 };
 
-const createTodoCards = (function () {
-  let todoCards = [];
-  Todos.forEach((todo) => {
-    todoCards.push(TodoCard(todo.getSummary()));
-  });
-
-  return todoCards;
-})();
-
-const createListsPage = function (lists) {
-  Content.appendChild(ActionArea("list"));
-
-  createListCards(lists).forEach((listCard) => {
-    Content.appendChild(listCard);
-  });
-};
-
-const createTodosPage = function () {
-  Content.appendChild(ActionArea("todo"));
-
-  createTodoCards.forEach((todoCard) => {
-    Content.appendChild(todoCard);
+const createPage = function (items, type) {
+  Content.appendChild(ActionArea(type));
+  createCards(items, type).forEach((itemCard) => {
+    Content.appendChild(itemCard);
   });
 };
 
 const clearPage = function () {
-  while (Content.firstChild) {
-    Content.firstChild.remove();
-  }
+  while (Content.firstChild) Content.firstChild.remove();
 };
 
 const changePage = function (btn, btns) {
@@ -59,20 +37,10 @@ const changePage = function (btn, btns) {
     btn.classList = "";
   });
   btn.classList = "active-button";
+
   clearPage();
-  if (btn.id == "lists-btn") {
-    createListsPage(Lists);
-  } else if (btn.id == "current-btn") {
-    createTodosPage();
-  }
+  if (btn.id == "lists-btn") createPage(Lists, "list");
+  else if (btn.id == "current-btn") createPage(Todos, "todo");
 };
 
-export {
-  addList,
-  createListCards,
-  createTodoCards,
-  changePage,
-  createListsPage,
-  createTodosPage,
-  clearPage,
-};
+export { addList, createCards, changePage, createPage, clearPage };
