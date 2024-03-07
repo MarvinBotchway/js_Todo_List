@@ -1,6 +1,14 @@
-import { clearPage, createPage } from "../Page.js";
-import { addList } from "../Services.js";
+import { clearPage, createPage, getCurrentList } from "../Page.js";
+import {
+  addList,
+  addTodo,
+  getList,
+  getListTodos,
+  getLists,
+  getTodos,
+} from "../Services.js";
 import List from "../models/List.js";
+import Todo from "../models/Todo.js";
 import ListForm from "./ListForm.js";
 import TodoForm from "./TodoForm.js";
 
@@ -42,12 +50,42 @@ export default function FormModal(type) {
 
   ListForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    const numberOfLists = getLists().length + 1;
     const ListTitle = document.querySelector("#title");
     if (ListTitle) {
-      let list = new List(ListTitle.value);
+      let id = numberOfLists;
+      let list = new List(id, ListTitle.value);
       let lists = addList(list);
       clearPage();
       createPage(lists, "list");
+    }
+  });
+
+  TodoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let listId = getCurrentList().id;
+    let todos = getTodos();
+    let id = todos.length + 1;
+    let list = getList(listId);
+    let titleElement = document.getElementById("todo-title");
+    let descElement = document.getElementById("todo-desc");
+    let dueDateElement = document.getElementById("todo-date");
+    let priorityElement = document.getElementById("todo-priority");
+
+    if (titleElement && descElement && dueDateElement && priorityElement) {
+      let title = titleElement.value;
+      let desc = descElement.value;
+      let dueDate = new Date(dueDateElement.value);
+      console.log(dueDate);
+      let priority = priorityElement.value;
+
+      const newTodo = new Todo(id, list, title, desc, dueDate, priority);
+
+      addTodo(newTodo);
+      let listTodos = getListTodos(list);
+      console.log(listTodos);
+      clearPage();
+      createPage(listTodos, "todo");
     }
   });
 

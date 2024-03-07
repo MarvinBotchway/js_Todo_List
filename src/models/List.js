@@ -1,5 +1,6 @@
 export default class List {
-  constructor(title) {
+  constructor(id, title) {
+    this.id = id;
     this.title = title;
   }
 }

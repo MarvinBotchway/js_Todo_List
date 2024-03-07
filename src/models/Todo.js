@@ -1,5 +1,6 @@
 export default class Todo {
-  constructor(list, title, description, dueDate, priority) {
+  constructor(id, list, title, description, dueDate, priority) {
+    this.id = id;
     this.list = list;
     this.title = title;
     this.description = description;
@@ -8,6 +9,7 @@ export default class Todo {
   }
 
   getSummary() {
+    let id = this.id;
     let title = this.title;
     let description = this.description;
     let dueDate = this.dueDate;
@@ -16,6 +18,6 @@ export default class Todo {
     description = `${description.substring(0, 50)}...`;
     dueDate = dueDate.toDateString();
 
-    return { title, description, dueDate, priority };
+    return { id, title, description, dueDate, priority };
   }
 }

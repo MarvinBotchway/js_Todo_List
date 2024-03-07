@@ -7,6 +7,7 @@ import Lists from "./data/Lists.js";
 
 const Content = document.getElementById("content");
 const Header = document.getElementById("header");
+let currentList = {};
 
 const addNav = () => {
   Header.appendChild(Nav);
@@ -28,6 +29,7 @@ const createCards = function (items, type) {
 const createPage = function (items, type) {
   Content.appendChild(ActionArea(type));
   createCards(items, type).forEach((itemCard) => {
+    console.log(itemCard);
     Content.appendChild(itemCard);
   });
 };
@@ -47,4 +49,20 @@ const changePage = function (btn, btns) {
   else if (btn.id == "current-btn") createPage(Todos, "todo");
 };
 
-export { addNav, createCards, createPage, clearPage, changePage };
+const setCurrentList = function (list) {
+  currentList = list;
+};
+
+const getCurrentList = function () {
+  return currentList;
+};
+
+export {
+  addNav,
+  createCards,
+  createPage,
+  clearPage,
+  changePage,
+  setCurrentList,
+  getCurrentList,
+};

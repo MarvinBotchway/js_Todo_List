@@ -1,5 +1,5 @@
 import List from "../models/List";
 
 export default (function Lists() {
-  return [new List("Workout Goals"), new List("School")];
+  return [new List(0, "Workout Goals"), new List(1, "School")];
 })();

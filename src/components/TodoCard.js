@@ -11,6 +11,7 @@ export default function TodoCard(Todo) {
   const doneInput = document.createElement("input");
   const deleteIcon = document.createElement("span");
 
+  todoCard.dataset.id = Todo.id;
   todoCard.classList += "card";
 
   title.textContent = Todo.title;

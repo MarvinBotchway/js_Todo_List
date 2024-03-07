@@ -22,10 +22,18 @@ export default (function TodoForm() {
 
   Form.classList += "form todo-form";
 
+  TitleInput.id = "todo-title";
   TitleInput.type = "text";
+
+  DescriptionInput.id = "todo-desc";
   DescriptionInput.type = "text";
+
+  DueDateInput.id = "todo-date";
   DueDateInput.type = "date";
+
+  PriorityInput.id = "todo-priority";
   PriorityInput.type = "text";
+
   SubmitBtn.type = "submit";
 
   TitleLabel.appendChild(TitleInput);

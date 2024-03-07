@@ -4,6 +4,7 @@ import Lists from "./Lists.js";
 export default (function Todos() {
   let todosArray = [
     new Todo(
+      0,
       Lists[0],
       "Cook",
       "I want to practice my cooking skills",
@@ -11,6 +12,7 @@ export default (function Todos() {
       "high"
     ),
     new Todo(
+      1,
       Lists[0],
       "Read",
       "Read a really interesing new book",
@@ -18,6 +20,7 @@ export default (function Todos() {
       "high"
     ),
     new Todo(
+      2,
       Lists[1],
       "Dance",
       "Learn a new dance",

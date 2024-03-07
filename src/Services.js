@@ -6,6 +6,25 @@ const addList = function (list) {
   return Lists;
 };
 
+const addTodo = function (todo) {
+  Todos.push(todo);
+  return Todos;
+};
+
+const getLists = function () {
+  return Lists;
+};
+
+const getList = function (id) {
+  let list = {};
+
+  Lists.forEach((item) => {
+    if (item.id == id) list = item;
+  });
+
+  return list;
+};
+
 const getListTodos = function (list) {
   let todos = [];
   Todos.forEach((todo) => {
@@ -15,5 +34,7 @@ const getListTodos = function (list) {
   });
   return todos;
 };
-
-export { addList, getListTodos };
+const getTodos = function () {
+  return Todos;
+};
+export { addList, getList, getLists, getListTodos, addTodo, getTodos };
