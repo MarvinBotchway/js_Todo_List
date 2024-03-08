@@ -4,6 +4,7 @@ import ActionArea from "./components/ActionArea.js";
 import TodoCard from "./components/TodoCard.js";
 import Todos from "./data/Todos.js";
 import Lists from "./data/Lists.js";
+import { getTodaysTodos } from "./Services.js";
 
 const Content = document.getElementById("content");
 const Header = document.getElementById("header");
@@ -43,10 +44,10 @@ const changePage = function (btn, btns) {
     btn.classList = "";
   });
   btn.classList = "active-button";
-
+  let todos = getTodaysTodos();
   clearPage();
   if (btn.id == "lists-btn") createPage(Lists, "list");
-  else if (btn.id == "current-btn") createPage(Todos, "todo");
+  else if (btn.id == "current-btn") createPage(todos, "todo");
 };
 
 const setCurrentList = function (list) {

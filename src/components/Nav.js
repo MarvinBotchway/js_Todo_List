@@ -8,7 +8,7 @@ export default (function Nav() {
   currentBtn.id = "current-btn";
 
   listsBtn.textContent = "Lists";
-  currentBtn.textContent = "Current";
+  currentBtn.textContent = "Today";
   listsBtn.classList += "active-button";
 
   nav.appendChild(listsBtn);

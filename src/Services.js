@@ -34,7 +34,26 @@ const getListTodos = function (list) {
   });
   return todos;
 };
+
+const getTodaysTodos = function () {
+  let todos = [];
+  Todos.forEach((todo) => {
+    let today = new Date().toDateString();
+    if (todo.dueDate.toDateString() == today) {
+      todos.push(todo);
+    }
+  });
+  return todos;
+};
 const getTodos = function () {
   return Todos;
 };
-export { addList, getList, getLists, getListTodos, addTodo, getTodos };
+export {
+  addList,
+  getList,
+  getLists,
+  getListTodos,
+  addTodo,
+  getTodaysTodos,
+  getTodos,
+};
