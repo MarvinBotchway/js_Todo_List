@@ -43,7 +43,11 @@ export default function FormModal(type) {
   Container.appendChild(Title);
 
   if (type == "list") FormContainer.appendChild(ListForm);
-  else FormContainer.appendChild(TodoForm);
+  else {
+    FormContainer.appendChild(TodoForm.Form);
+    let listSelect = TodoForm.ListSelect;
+    listSelect.value = getCurrentList().id;
+  }
 
   Container.appendChild(FormContainer);
   FormModal.appendChild(Container);
@@ -61,23 +65,31 @@ export default function FormModal(type) {
     }
   });
 
-  TodoForm.addEventListener("submit", (e) => {
+  TodoForm.Form.addEventListener("submit", (e) => {
     e.preventDefault();
-    let listId = getCurrentList().id;
+
     let todos = getTodos();
     let id = todos.length + 1;
-    let list = getList(listId);
+    let listElement = document.getElementById("todo-list");
     let titleElement = document.getElementById("todo-title");
     let descElement = document.getElementById("todo-desc");
     let dueDateElement = document.getElementById("todo-date");
     let priorityElement = document.getElementById("todo-priority");
 
-    if (titleElement && descElement && dueDateElement && priorityElement) {
+    if (
+      titleElement &&
+      listElement &&
+      descElement &&
+      dueDateElement &&
+      priorityElement
+    ) {
       let title = titleElement.value;
       let desc = descElement.value;
       let dueDate = new Date(dueDateElement.value);
-      console.log(dueDate);
       let priority = priorityElement.value;
+
+      let listId = listElement.value;
+      let list = getList(listId);
 
       const newTodo = new Todo(id, list, title, desc, dueDate, priority);
 

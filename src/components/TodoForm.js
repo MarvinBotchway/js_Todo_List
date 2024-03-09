@@ -1,5 +1,11 @@
+import { getLists } from "../Services";
+
 export default (function TodoForm() {
   const Form = document.createElement("form");
+
+  const ListLabel = document.createElement("label");
+  const ListSelect = document.createElement("select");
+
   const TitleLabel = document.createElement("label");
   const TitleInput = document.createElement("input");
 
@@ -14,6 +20,14 @@ export default (function TodoForm() {
 
   const SubmitBtn = document.createElement("button");
 
+  getLists().forEach((list) => {
+    let listOption = document.createElement("option");
+    listOption.value = list.id;
+    listOption.text = list.title;
+    ListSelect.add(listOption);
+  });
+  ListLabel.textContent = "List";
+
   TitleLabel.textContent = "Title";
   DescriptionLabel.textContent = "Description";
   DueDateLabel.textContent = "Due Date";
@@ -21,6 +35,9 @@ export default (function TodoForm() {
   SubmitBtn.textContent = "Add";
 
   Form.classList += "form todo-form";
+
+  ListSelect.id = "todo-list";
+  ListSelect.value = 1;
 
   TitleInput.id = "todo-title";
   TitleInput.type = "text";
@@ -36,6 +53,8 @@ export default (function TodoForm() {
 
   SubmitBtn.type = "submit";
 
+  ListLabel.appendChild(ListSelect);
+  Form.appendChild(ListLabel);
   TitleLabel.appendChild(TitleInput);
   Form.appendChild(TitleLabel);
   DescriptionLabel.appendChild(DescriptionInput);
@@ -46,5 +65,5 @@ export default (function TodoForm() {
   Form.appendChild(PriorityLabel);
   Form.appendChild(SubmitBtn);
 
-  return Form;
+  return { Form, ListSelect };
 })();

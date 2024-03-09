@@ -30,7 +30,6 @@ const createCards = function (items, type) {
 const createPage = function (items, type) {
   Content.appendChild(ActionArea(type));
   createCards(items, type).forEach((itemCard) => {
-    console.log(itemCard);
     Content.appendChild(itemCard);
   });
 };

@@ -229,7 +229,8 @@ button:hover {
   margin-bottom: 1rem;
 }
 
-.todo-form > label > input {
+.todo-form > label > input,
+select {
   width: 80%;
   height: 2rem;
   font-size: large;
