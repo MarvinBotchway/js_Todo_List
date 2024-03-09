@@ -236,3 +236,9 @@ select {
   font-size: large;
   padding: 0 0.5rem;
 }
+.date {
+  margin: auto;
+  color: white;
+  padding: 0.5rem;
+  font-size: medium;
+}

@@ -2,7 +2,6 @@ import ListCard from "./components/ListCard.js";
 import Nav from "./components/Nav.js";
 import ActionArea from "./components/ActionArea.js";
 import TodoCard from "./components/TodoCard.js";
-import Todos from "./data/Todos.js";
 import Lists from "./data/Lists.js";
 import { getTodaysTodos } from "./Services.js";
 
@@ -11,8 +10,8 @@ const Header = document.getElementById("header");
 let currentList = {};
 
 const addNav = () => {
-  Header.appendChild(Nav);
-  Nav.childNodes.forEach((btn, i, btns) => {
+  Header.appendChild(Nav.nav);
+  Nav.nav.childNodes.forEach((btn, i, btns) => {
     btn.addEventListener("click", () => changePage(btn, btns));
   });
 };
