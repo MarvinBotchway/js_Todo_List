@@ -242,3 +242,16 @@ select {
   padding: 0.5rem;
   font-size: medium;
 }
+
+.list-card > div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  padding: 0.5rem;
+}
+
+.list-card > div > button {
+  font-size: small;
+  padding: 0.25rem 0.5rem;
+}
