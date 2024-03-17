@@ -1,8 +1,8 @@
 import { clearPage, createPage } from "../Page";
-import { addList, getLists } from "../Services";
+import { updateList } from "../Services";
 import List from "../models/List";
 
-export default (function ListForm() {
+export default function ListEditForm(selectedList) {
   const Form = document.createElement("form");
   const Label = document.createElement("label");
   const Input = document.createElement("input");
@@ -14,18 +14,20 @@ export default (function ListForm() {
   Input.id = "title";
   SubmitBtn.id = "list-submit";
   SubmitBtn.type = "submit";
-  SubmitBtn.textContent = "Add";
+  SubmitBtn.textContent = "Edit";
 
-  Input.value = "";
+  Input.value = selectedList.title;
 
   Form.appendChild(Label);
   Form.appendChild(Input);
   Form.appendChild(SubmitBtn);
 
+  let id = selectedList.id;
+
   Form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const numberOfLists = getLists().length;
-    let lists = addList(new List(numberOfLists + 1, Input.value));
+
+    let lists = updateList(new List(id, Input.value));
     clearPage();
     createPage(lists, "list");
 
@@ -33,4 +35,4 @@ export default (function ListForm() {
   });
 
   return Form;
-})();
+}

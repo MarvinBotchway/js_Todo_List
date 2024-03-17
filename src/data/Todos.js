@@ -8,7 +8,7 @@ export default (function Todos() {
       Lists[0],
       "Cook",
       "I want to practice my cooking skills",
-      new Date(2024, 18, 2),
+      new Date("2024-02-18"),
       "high"
     ),
     new Todo(
@@ -16,7 +16,7 @@ export default (function Todos() {
       Lists[0],
       "Read",
       "Read a really interesing new book",
-      new Date(2024, 18, 2),
+      new Date("2024-02-18"),
       "high"
     ),
     new Todo(
@@ -24,7 +24,7 @@ export default (function Todos() {
       Lists[1],
       "Dance",
       "Learn a new dance",
-      new Date(2024, 18, 2),
+      new Date("2024-02-18"),
       "low"
     ),
   ];

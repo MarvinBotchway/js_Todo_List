@@ -6,11 +6,30 @@ const addList = function (list) {
   return Lists;
 };
 
+const updateList = function (newList) {
+  Lists.forEach((list) => {
+    if (list.id == newList.id) {
+      list.title = newList.title;
+    }
+  });
+  return Lists;
+};
+
 const addTodo = function (todo) {
   Todos.push(todo);
   return Todos;
 };
-
+const updateTodo = function (newTodo) {
+  Todos.forEach((todo) => {
+    if (todo.id == newTodo.id) {
+      todo.title = newTodo.title;
+      todo.description = newTodo.description;
+      todo.dueDate = newTodo.dueDate;
+      todo.priority = newTodo.priority;
+    }
+  });
+  return Todos;
+};
 const getLists = function () {
   return Lists;
 };
@@ -25,14 +44,15 @@ const getList = function (id) {
   return list;
 };
 
-const getListTodos = function (list) {
-  let todos = [];
-  Todos.forEach((todo) => {
+const getListTodos = function (todos, list) {
+  let listTodos = [];
+
+  todos.forEach((todo) => {
     if (todo.list == list) {
-      todos.push(todo);
+      listTodos.push(todo);
     }
   });
-  return todos;
+  return listTodos;
 };
 
 const getTodaysTodos = function () {
@@ -48,12 +68,26 @@ const getTodaysTodos = function () {
 const getTodos = function () {
   return Todos;
 };
+
+function getDateForInput(selectedTodo) {
+  let dueDate = "";
+  let day = selectedTodo.dueDate.getDate();
+  let month = selectedTodo.dueDate.getMonth() + 1;
+  let year = selectedTodo.dueDate.getFullYear();
+  if (day < 10) day = "0" + day;
+  if (month < 10) month = "0" + month;
+  dueDate = year + "-" + month + "-" + day;
+  return dueDate;
+}
 export {
   addList,
   getList,
   getLists,
+  updateList,
   getListTodos,
   addTodo,
+  updateTodo,
   getTodaysTodos,
   getTodos,
+  getDateForInput,
 };

@@ -1,8 +1,13 @@
 import { clearPage, createPage, getCurrentList } from "../Page";
-import { addTodo, getList, getListTodos, getTodos } from "../Services";
+import {
+  getDateForInput,
+  getList,
+  getListTodos,
+  updateTodo,
+} from "../Services";
 import Todo from "../models/Todo";
 
-export default (function TodoForm() {
+export default function TodoEditForm(selectedTodo) {
   const Form = document.createElement("form");
   const TitleLabel = document.createElement("label");
   const TitleInput = document.createElement("input");
@@ -18,7 +23,7 @@ export default (function TodoForm() {
   DescriptionLabel.textContent = "Description";
   DueDateLabel.textContent = "Due Date";
   PriorityLabel.textContent = "Priority";
-  SubmitBtn.textContent = "Add";
+  SubmitBtn.textContent = "Update";
 
   Form.classList += "form todo-form";
 
@@ -31,6 +36,11 @@ export default (function TodoForm() {
   PriorityInput.id = "todo-priority";
   PriorityInput.type = "text";
   SubmitBtn.type = "submit";
+
+  TitleInput.value = selectedTodo.title;
+  DescriptionInput.value = selectedTodo.description;
+  DueDateInput.value = getDateForInput(selectedTodo);
+  PriorityInput.value = selectedTodo.priority;
 
   TitleLabel.appendChild(TitleInput);
   Form.appendChild(TitleLabel);
@@ -45,8 +55,7 @@ export default (function TodoForm() {
   Form.addEventListener("submit", (e) => {
     e.preventDefault();
     let listId = getCurrentList().id;
-    let todos = getTodos();
-    let id = todos.length + 1;
+    let id = selectedTodo.id;
     let list = getList(listId);
     let title = TitleInput.value;
     let desc = DescriptionInput.value;
@@ -55,8 +64,8 @@ export default (function TodoForm() {
 
     const newTodo = new Todo(id, list, title, desc, dueDate, priority);
 
-    let newTodos = addTodo(newTodo);
-    let listTodos = getListTodos(newTodos, list);
+    let todos = updateTodo(newTodo);
+    let listTodos = getListTodos(todos, list);
     clearPage();
     createPage(listTodos, "todo");
 
@@ -67,4 +76,4 @@ export default (function TodoForm() {
   });
 
   return Form;
-})();
+}

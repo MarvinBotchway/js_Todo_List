@@ -1,7 +1,10 @@
 import { clearPage, createPage, setCurrentList } from "../Page";
 import { getListTodos } from "../Services";
+import Todos from "../data/Todos";
+import FormModal from "./FormModal";
 
 export default function ListCard(list) {
+  const Content = document.getElementById("content");
   const listCard = document.createElement("div");
   const buttonsSection = document.createElement("div");
   const editButton = document.createElement("button");
@@ -21,10 +24,13 @@ export default function ListCard(list) {
   listCard.appendChild(buttonsSection);
 
   todosButton.addEventListener("click", () => {
-    let todos = getListTodos(list);
+    let todos = getListTodos(Todos, list);
     clearPage();
     createPage(todos, "todo");
     setCurrentList(list);
+  });
+  editButton.addEventListener("click", () => {
+    Content.appendChild(FormModal("edit-list", list));
   });
 
   return listCard;

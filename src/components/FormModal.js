@@ -1,25 +1,16 @@
 import { clearPage, createPage, getCurrentList } from "../Page.js";
-import {
-  addList,
-  addTodo,
-  getList,
-  getListTodos,
-  getLists,
-  getTodos,
-} from "../Services.js";
-import List from "../models/List.js";
-import Todo from "../models/Todo.js";
+import ListEditForm from "./ListEditForm.js";
 import ListForm from "./ListForm.js";
+import TodoEditForm from "./TodoEditForm.js";
 import TodoForm from "./TodoForm.js";
 
-export default function FormModal(type) {
+export default function FormModal(type, selected = null) {
   const Content = document.getElementById("content");
   const FormModal = document.createElement("div");
   const Container = document.createElement("div");
   const Close = document.createElement("span");
   const Title = document.createElement("h2");
   const FormContainer = document.createElement("div");
-  const addBtn = document.querySelector(".add-btn");
 
   FormModal.classList += "modal";
   Container.classList += "container";
@@ -42,52 +33,17 @@ export default function FormModal(type) {
   Container.appendChild(Close);
   Container.appendChild(Title);
 
-  if (type == "list") FormContainer.appendChild(ListForm);
-  else FormContainer.appendChild(TodoForm);
-
+  if (type == "list") {
+    FormContainer.appendChild(ListForm);
+  } else if (type == "edit-list") {
+    FormContainer.appendChild(ListEditForm(selected));
+  } else if (type == "todo") {
+    FormContainer.appendChild(TodoForm);
+  } else if (type == "edit-todo") {
+    FormContainer.appendChild(TodoEditForm(selected));
+  }
   Container.appendChild(FormContainer);
   FormModal.appendChild(Container);
-
-  ListForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const numberOfLists = getLists().length + 1;
-    const ListTitle = document.querySelector("#title");
-    if (ListTitle) {
-      let id = numberOfLists;
-      let list = new List(id, ListTitle.value);
-      let lists = addList(list);
-      clearPage();
-      createPage(lists, "list");
-    }
-  });
-
-  TodoForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let listId = getCurrentList().id;
-    let todos = getTodos();
-    let id = todos.length + 1;
-    let list = getList(listId);
-    let titleElement = document.getElementById("todo-title");
-    let descElement = document.getElementById("todo-desc");
-    let dueDateElement = document.getElementById("todo-date");
-    let priorityElement = document.getElementById("todo-priority");
-
-    if (titleElement && descElement && dueDateElement && priorityElement) {
-      let title = titleElement.value;
-      let desc = descElement.value;
-      let dueDate = new Date(dueDateElement.value);
-      console.log(dueDate);
-      let priority = priorityElement.value;
-
-      const newTodo = new Todo(id, list, title, desc, dueDate, priority);
-
-      addTodo(newTodo);
-      let listTodos = getListTodos(list);
-      console.log(listTodos);
-      clearPage();
-      createPage(listTodos, "todo");
-    }
-  });
 
   return FormModal;
 }

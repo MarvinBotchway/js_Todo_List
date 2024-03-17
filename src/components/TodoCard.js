@@ -1,4 +1,8 @@
+import FormModal from "./FormModal";
+import TodoEditForm from "./TodoEditForm";
+
 export default function TodoCard(Todo) {
+  const Content = document.getElementById("content");
   const todoCard = document.createElement("div");
   const title = document.createElement("h3");
   const middleContainer = document.createElement("div");
@@ -10,14 +14,15 @@ export default function TodoCard(Todo) {
   const btnsContainer = document.createElement("div");
   const doneInput = document.createElement("input");
   const deleteIcon = document.createElement("span");
+  let todoSummary = Todo.getSummary();
 
-  todoCard.dataset.id = Todo.id;
+  todoCard.dataset.id = todoSummary.id;
   todoCard.classList += "card";
 
-  title.textContent = Todo.title;
-  description.textContent = Todo.description;
-  dueDate.textContent = Todo.dueDate.toString();
-  priority.textContent = Todo.priority;
+  title.textContent = todoSummary.title;
+  description.textContent = todoSummary.description;
+  dueDate.textContent = todoSummary.dueDate.toString();
+  priority.textContent = todoSummary.priority;
   middleContainer.id = "middle-container";
   editBtn.textContent = "Edit";
   bottomContainer.id = "bottom-container";
@@ -26,6 +31,10 @@ export default function TodoCard(Todo) {
   doneInput.type = "checkbox";
   deleteIcon.classList += "material-symbols-outlined";
   deleteIcon.textContent = "delete";
+
+  editBtn.addEventListener("click", () => {
+    Content.appendChild(FormModal("edit-todo", Todo));
+  });
 
   middleContainer.append(description);
   middleContainer.append(editBtn);

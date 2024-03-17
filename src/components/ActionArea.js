@@ -29,7 +29,5 @@ export default function ActionArea(type) {
     actionArea.appendChild(TimeHeading);
   }
 
-  console.log(TodayButton);
-
   return actionArea;
 }

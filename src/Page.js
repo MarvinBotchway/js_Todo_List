@@ -20,7 +20,7 @@ const createCards = function (items, type) {
   let cards = [];
   items.forEach((item) => {
     if (type == "list") cards.push(ListCard(item));
-    else cards.push(TodoCard(item.getSummary()));
+    else cards.push(TodoCard(item));
   });
 
   return cards;
