@@ -1,6 +1,6 @@
-import { clearPage, createPage } from "../Page";
 import { updateList } from "../Services";
 import List from "../models/List";
+import { clearContent, updateContent } from "../updateContent";
 
 export default function ListEditForm(selectedList) {
   const Form = document.createElement("form");
@@ -28,8 +28,8 @@ export default function ListEditForm(selectedList) {
     e.preventDefault();
 
     let lists = updateList(new List(id, Input.value));
-    clearPage();
-    createPage(lists, "list");
+    clearContent();
+    updateContent(lists, "list");
 
     Input.value = "";
   });

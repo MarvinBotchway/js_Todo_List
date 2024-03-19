@@ -1,5 +1,11 @@
-import { clearPage, createPage, getCurrentList } from "../Page";
-import { addTodo, getList, getListTodos, getTodos } from "../Services";
+import { clearContent, updateContent } from "../updateContent";
+import {
+  addTodo,
+  getCurrentList,
+  getList,
+  getListTodos,
+  getTodos,
+} from "../Services";
 import Todo from "../models/Todo";
 
 export default (function TodoForm() {
@@ -57,8 +63,8 @@ export default (function TodoForm() {
 
     let newTodos = addTodo(newTodo);
     let listTodos = getListTodos(newTodos, list);
-    clearPage();
-    createPage(listTodos, "todo");
+    clearContent();
+    updateContent(listTodos, "todo");
 
     TitleInput.value = "";
     DescriptionInput.value = "";

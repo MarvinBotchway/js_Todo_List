@@ -1,6 +1,6 @@
-import { clearPage, createPage, setCurrentList } from "../Page";
-import { getListTodos } from "../Services";
+import { getListTodos, setCurrentList } from "../Services";
 import Todos from "../data/Todos";
+import { clearContent, updateContent } from "../updateContent";
 import FormModal from "./FormModal";
 
 export default function ListCard(list) {
@@ -25,8 +25,8 @@ export default function ListCard(list) {
 
   todosButton.addEventListener("click", () => {
     let todos = getListTodos(Todos, list);
-    clearPage();
-    createPage(todos, "todo");
+    clearContent();
+    updateContent(todos, "todo");
     setCurrentList(list);
   });
   editButton.addEventListener("click", () => {

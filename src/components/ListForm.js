@@ -1,6 +1,6 @@
-import { clearPage, createPage } from "../Page";
 import { addList, getLists } from "../Services";
 import List from "../models/List";
+import { clearContent, updateContent } from "../updateContent";
 
 export default (function ListForm() {
   const Form = document.createElement("form");
@@ -26,8 +26,8 @@ export default (function ListForm() {
     e.preventDefault();
     const numberOfLists = getLists().length;
     let lists = addList(new List(numberOfLists + 1, Input.value));
-    clearPage();
-    createPage(lists, "list");
+    clearContent();
+    updateContent(lists, "list");
 
     Input.value = "";
   });

@@ -1,6 +1,8 @@
 import Lists from "./data/Lists.js";
 import Todos from "./data/Todos.js";
 
+let currentList = {};
+
 const addList = function (list) {
   Lists.push(list);
   return Lists;
@@ -13,6 +15,20 @@ const updateList = function (newList) {
     }
   });
   return Lists;
+};
+
+const getLists = function () {
+  return Lists;
+};
+
+const getList = function (id) {
+  let list = {};
+
+  Lists.forEach((item) => {
+    if (item.id == id) list = item;
+  });
+
+  return list;
 };
 
 const addTodo = function (todo) {
@@ -29,19 +45,6 @@ const updateTodo = function (newTodo) {
     }
   });
   return Todos;
-};
-const getLists = function () {
-  return Lists;
-};
-
-const getList = function (id) {
-  let list = {};
-
-  Lists.forEach((item) => {
-    if (item.id == id) list = item;
-  });
-
-  return list;
 };
 
 const getListTodos = function (todos, list) {
@@ -63,8 +66,11 @@ const getTodaysTodos = function () {
       todos.push(todo);
     }
   });
+
+  console.log(todos);
   return todos;
 };
+
 const getTodos = function () {
   return Todos;
 };
@@ -79,6 +85,15 @@ function getDateForInput(selectedTodo) {
   dueDate = year + "-" + month + "-" + day;
   return dueDate;
 }
+
+const setCurrentList = function (list) {
+  currentList = list;
+};
+
+const getCurrentList = function () {
+  return currentList;
+};
+
 export {
   addList,
   getList,
@@ -90,4 +105,6 @@ export {
   getTodaysTodos,
   getTodos,
   getDateForInput,
+  setCurrentList,
+  getCurrentList,
 };
