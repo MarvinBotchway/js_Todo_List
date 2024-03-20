@@ -32,6 +32,15 @@ const getList = function (id) {
   return list;
 };
 
+const deleteList = function (selectedList) {
+  Lists.forEach((list, i) => {
+    if (list.id == selectedList.id) {
+      Lists.splice(i, 1);
+    }
+  });
+  return Lists;
+};
+
 const addTodo = function (todo) {
   Todos.push(todo);
   return Todos;
@@ -51,9 +60,7 @@ const updateTodo = function (newTodo) {
 const deleteTodo = function (selectedTodo) {
   Todos.forEach((todo, i) => {
     if (todo.id == selectedTodo.id) {
-      console.log(todo);
       Todos.splice(i, 1);
-      console.log(Todos);
     }
   });
   return Todos;
@@ -121,6 +128,7 @@ export {
   getList,
   getLists,
   updateList,
+  deleteList,
   getListTodos,
   addTodo,
   updateTodo,

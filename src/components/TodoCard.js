@@ -1,13 +1,7 @@
-import {
-  deleteTodo,
-  getListOrTodayTodos,
-  getListTodos,
-  getTodaysTodos,
-} from "../Services";
+import { deleteTodo, getListOrTodayTodos } from "../Services";
 import { clearContent, updateContent } from "../updateContent";
 import AlertBar from "./AlertBar";
 import FormModal from "./FormModal";
-import Nav from "./Nav";
 
 export default function TodoCard(Todo) {
   const Content = document.getElementById("content");
@@ -38,6 +32,7 @@ export default function TodoCard(Todo) {
   btnsContainer.id = "btns-container";
   doneInput.id = "done";
   doneInput.type = "checkbox";
+  deleteIcon.id = "delete-button";
   deleteIcon.classList += "material-symbols-outlined";
   deleteIcon.textContent = "delete";
 
@@ -52,7 +47,7 @@ export default function TodoCard(Todo) {
 
     clearContent();
     updateContent(todos, "todo");
-    Header.appendChild(AlertBar(Todo));
+    Header.appendChild(AlertBar(Todo, "todo"));
 
     setTimeout(() => {
       const alertBar = document.getElementById("alert");

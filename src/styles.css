@@ -91,13 +91,12 @@ button:hover {
   display: flex;
   justify-content: space-between;
 }
-#btns-container > span {
-  color: red;
+#delete-button {
+  color: rgba(0, 0, 0, 0.8);
 }
 
-#btns-container > span:hover {
-  color: white;
-  background-color: red;
+#delete-button:hover {
+  color: red;
   border-radius: 16px;
   cursor: pointer;
 }
