@@ -1,3 +1,4 @@
+import Nav from "./components/Nav.js";
 import Lists from "./data/Lists.js";
 import Todos from "./data/Todos.js";
 
@@ -42,6 +43,17 @@ const updateTodo = function (newTodo) {
       todo.description = newTodo.description;
       todo.dueDate = newTodo.dueDate;
       todo.priority = newTodo.priority;
+    }
+  });
+  return Todos;
+};
+
+const deleteTodo = function (selectedTodo) {
+  Todos.forEach((todo, i) => {
+    if (todo.id == selectedTodo.id) {
+      console.log(todo);
+      Todos.splice(i, 1);
+      console.log(Todos);
     }
   });
   return Todos;
@@ -94,6 +106,16 @@ const getCurrentList = function () {
   return currentList;
 };
 
+const getListOrTodayTodos = function (todos, list) {
+  if (Nav.todayBtn.className == "active-button") {
+    todos = getTodaysTodos();
+  } else {
+    todos = getListTodos(todos, list);
+  }
+
+  return todos;
+};
+
 export {
   addList,
   getList,
@@ -102,9 +124,11 @@ export {
   getListTodos,
   addTodo,
   updateTodo,
+  deleteTodo,
   getTodaysTodos,
   getTodos,
   getDateForInput,
   setCurrentList,
   getCurrentList,
+  getListOrTodayTodos,
 };

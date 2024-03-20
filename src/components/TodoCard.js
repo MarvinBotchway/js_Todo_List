@@ -1,7 +1,17 @@
+import {
+  deleteTodo,
+  getListOrTodayTodos,
+  getListTodos,
+  getTodaysTodos,
+} from "../Services";
+import { clearContent, updateContent } from "../updateContent";
+import AlertBar from "./AlertBar";
 import FormModal from "./FormModal";
+import Nav from "./Nav";
 
 export default function TodoCard(Todo) {
   const Content = document.getElementById("content");
+  const Header = document.getElementById("header");
   const todoCard = document.createElement("div");
   const title = document.createElement("h3");
   const middleContainer = document.createElement("div");
@@ -33,6 +43,21 @@ export default function TodoCard(Todo) {
 
   editBtn.addEventListener("click", () => {
     Content.appendChild(FormModal("edit-todo", Todo));
+  });
+
+  deleteIcon.addEventListener("click", () => {
+    let todos = deleteTodo(Todo);
+
+    todos = getListOrTodayTodos(todos, Todo.list);
+
+    clearContent();
+    updateContent(todos, "todo");
+    Header.appendChild(AlertBar(Todo));
+
+    setTimeout(() => {
+      const alertBar = document.getElementById("alert");
+      if (alertBar) Header.removeChild(alertBar);
+    }, 3000);
   });
 
   middleContainer.append(description);

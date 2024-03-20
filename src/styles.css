@@ -28,6 +28,7 @@ button:hover {
 
 #action-area {
   display: flex;
+  flex-direction: column;
   width: auto;
   height: 6rem;
   border-radius: 6px 6px 0 0;
@@ -255,5 +256,24 @@ select {
 
 .list-card > div > button {
   font-size: small;
+  padding: 0.25rem 0.5rem;
+}
+
+#alert {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 2rem;
+  /* background-color: rgba(0, 0, 0, 0.6); */
+  background-color: orange;
+  color: white;
+  padding: 0.5rem 0;
+  align-items: center;
+  justify-content: space-evenly;
+  overflow: hidden;
+}
+
+#alert > button {
+  font-size: medium;
   padding: 0.25rem 0.5rem;
 }

@@ -3,6 +3,7 @@ import {
   getCurrentList,
   getDateForInput,
   getList,
+  getListOrTodayTodos,
   getListTodos,
   getTodaysTodos,
   updateTodo,
@@ -68,16 +69,10 @@ export default function TodoEditForm(selectedTodo) {
     const newTodo = new Todo(id, list, title, desc, dueDate, priority);
 
     let todos = updateTodo(newTodo);
-    let listTodos = [];
-
-    if (Nav.todayBtn.className == "active-button") {
-      listTodos = getTodaysTodos();
-    } else {
-      listTodos = getListTodos(todos, list);
-    }
+    todos = getListOrTodayTodos(todos, list);
 
     clearContent();
-    updateContent(listTodos, "todo");
+    updateContent(todos, "todo");
 
     TitleInput.value = "";
     DescriptionInput.value = "";
