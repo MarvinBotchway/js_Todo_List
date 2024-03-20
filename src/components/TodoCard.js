@@ -1,4 +1,9 @@
-import { deleteTodo, getListOrTodayTodos } from "../Services";
+import {
+  deleteTodo,
+  getListOrTodayTodos,
+  getTodos,
+  updateTodo,
+} from "../Services";
 import { clearContent, updateContent } from "../updateContent";
 import AlertBar from "./AlertBar";
 import FormModal from "./FormModal";
@@ -26,6 +31,8 @@ export default function TodoCard(Todo) {
   description.textContent = todoSummary.description;
   dueDate.textContent = todoSummary.dueDate.toString();
   priority.textContent = todoSummary.priority;
+  doneInput.checked = todoSummary.done;
+
   middleContainer.id = "middle-container";
   editBtn.textContent = "Edit";
   bottomContainer.id = "bottom-container";
@@ -35,6 +42,19 @@ export default function TodoCard(Todo) {
   deleteIcon.id = "delete-button";
   deleteIcon.classList += "material-symbols-outlined";
   deleteIcon.textContent = "delete";
+
+  if (Todo.done) title.classList += "cancel";
+
+  doneInput.addEventListener("change", (e) => {
+    if (e.currentTarget.checked) {
+      Todo.done = true;
+      title.classList += "cancel";
+    } else {
+      Todo.done = false;
+      title.classList = "";
+    }
+    updateTodo(Todo);
+  });
 
   editBtn.addEventListener("click", () => {
     Content.appendChild(FormModal("edit-todo", Todo));

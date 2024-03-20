@@ -4,12 +4,9 @@ import {
   getDateForInput,
   getList,
   getListOrTodayTodos,
-  getListTodos,
-  getTodaysTodos,
   updateTodo,
 } from "../Services";
 import Todo from "../models/Todo";
-import Nav from "./Nav";
 
 export default function TodoEditForm(selectedTodo) {
   const Form = document.createElement("form");

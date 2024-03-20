@@ -9,7 +9,8 @@ export default (function Todos() {
       "Cook",
       "I want to practice my cooking skills",
       new Date("2024-02-18"),
-      "high"
+      "high",
+      true
     ),
     new Todo(
       1,
@@ -17,7 +18,8 @@ export default (function Todos() {
       "Read",
       "Read a really interesing new book",
       new Date("2024-02-18"),
-      "high"
+      "high",
+      false
     ),
     new Todo(
       2,
@@ -25,7 +27,8 @@ export default (function Todos() {
       "Dance",
       "Learn a new dance",
       new Date("2024-02-18"),
-      "low"
+      "low",
+      true
     ),
   ];
 
