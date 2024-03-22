@@ -3,7 +3,7 @@ import {
   getListOrTodayTodos,
   getTodos,
   updateTodo,
-} from "../Services";
+} from "../services/todoServices";
 import Todo from "../models/Todo";
 import { clearContent, updateContent } from "../updateContent";
 import AlertBar from "./AlertBar";

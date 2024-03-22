@@ -1,5 +1,5 @@
-import { getLists, getTodaysTodos } from "../Services";
-import Lists from "../data/Lists";
+import { getTodaysTodos } from "../services/todoServices";
+import { getLists } from "../services/listServices";
 import { clearContent, updateContent } from "../updateContent";
 
 export default (function Nav() {

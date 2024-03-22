@@ -1,66 +1,18 @@
-import Nav from "./components/Nav.js";
-import Lists from "./data/Lists.js";
-import Todos from "./data/Todos.js";
+import Nav from "../components/Nav.js";
+import Todo from "../models/Todo.js";
 import {
-  addDefaultDataToLocalStorage,
   getDataFromLocalStorage,
   updateDataInLocalStorage,
-} from "./data/localStorageService.js";
+} from "./localStorageService.js";
 
-let currentList = {};
-
-const addDefaultData = function () {
-  addDefaultDataToLocalStorage();
-};
-
-const addList = function (list) {
-  Lists.push(list);
-  updateDataInLocalStorage(Lists, "list");
-  return getDataFromLocalStorage("list");
-};
-
-const updateList = function (newList) {
-  Lists.forEach((list) => {
-    if (list.id == newList.id) {
-      list.title = newList.title;
-    }
-  });
-
-  updateDataInLocalStorage(Lists, "list");
-  return getDataFromLocalStorage("list");
-};
-
-const getLists = function () {
-  let lists = getDataFromLocalStorage("list");
-  return lists;
-};
-
-const getList = function (id) {
-  let list = {};
-  let lists = getDataFromLocalStorage("list");
-
-  lists.forEach((item) => {
-    if (item.id == id) list = item;
-  });
-
-  return list;
-};
-
-const deleteList = function (selectedList) {
-  Lists.forEach((list, i) => {
-    if (list.id == selectedList.id) {
-      Lists.splice(i, 1);
-    }
-  });
-  updateDataInLocalStorage(Lists, "list");
-  return getDataFromLocalStorage("list");
-};
+let Todos = getDataFromLocalStorage("todo");
 
 const addTodo = function (todo) {
   Todos.push(todo);
   updateDataInLocalStorage(Todos, "todo");
   return getDataFromLocalStorage("todo");
 };
+
 const updateTodo = function (newTodo) {
   Todos.forEach((todo) => {
     if (todo.id == newTodo.id) {
@@ -99,13 +51,22 @@ const getListTodos = function (todos, list) {
 const getTodaysTodos = function () {
   let todos = [];
   Todos.forEach((todo) => {
+    todo = new Todo(
+      todo.id,
+      todo.list,
+      todo.title,
+      todo.description,
+      new Date(todo.dueDate),
+      todo.priority,
+      todo.done
+    );
+
     let today = new Date().toDateString();
     if (todo.dueDate.toDateString() == today) {
       todos.push(todo);
     }
   });
 
-  console.log(todos);
   return todos;
 };
 
@@ -125,14 +86,6 @@ function getDateForInput(selectedTodo) {
   return dueDate;
 }
 
-const setCurrentList = function (list) {
-  currentList = list;
-};
-
-const getCurrentList = function () {
-  return currentList;
-};
-
 const getListOrTodayTodos = function (todos, list) {
   if (Nav.todayBtn.className == "active-button") {
     todos = getTodaysTodos();
@@ -144,12 +97,6 @@ const getListOrTodayTodos = function (todos, list) {
 };
 
 export {
-  addDefaultData,
-  addList,
-  getList,
-  getLists,
-  updateList,
-  deleteList,
   getListTodos,
   addTodo,
   updateTodo,
@@ -157,7 +104,5 @@ export {
   getTodaysTodos,
   getTodos,
   getDateForInput,
-  setCurrentList,
-  getCurrentList,
   getListOrTodayTodos,
 };

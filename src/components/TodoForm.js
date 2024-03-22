@@ -1,12 +1,7 @@
 import { clearContent, updateContent } from "../updateContent";
-import {
-  addTodo,
-  getCurrentList,
-  getList,
-  getListTodos,
-  getTodos,
-} from "../Services";
 import Todo from "../models/Todo";
+import { getCurrentList, getList } from "../services/listServices";
+import { addTodo, getListTodos, getTodos } from "../services/todoServices";
 
 export default (function TodoForm() {
   const Form = document.createElement("form");

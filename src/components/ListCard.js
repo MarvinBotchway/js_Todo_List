@@ -1,9 +1,5 @@
-import {
-  deleteList,
-  getListTodos,
-  getTodos,
-  setCurrentList,
-} from "../Services";
+import { getListTodos, getTodos } from "../services/todoServices";
+import { deleteList, setCurrentList } from "../services/listServices";
 import { clearContent, updateContent } from "../updateContent";
 import AlertBar from "./AlertBar";
 import FormModal from "./FormModal";

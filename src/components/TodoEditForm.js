@@ -1,12 +1,11 @@
 import { clearContent, updateContent } from "../updateContent";
 import {
-  getCurrentList,
   getDateForInput,
-  getList,
   getListOrTodayTodos,
   updateTodo,
-} from "../Services";
+} from "../services/todoServices";
 import Todo from "../models/Todo";
+import { getCurrentList, getList } from "../services/listServices";
 
 export default function TodoEditForm(selectedTodo) {
   const Form = document.createElement("form");

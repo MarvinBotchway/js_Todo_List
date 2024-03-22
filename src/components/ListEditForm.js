@@ -1,5 +1,5 @@
-import { updateList } from "../Services";
 import List from "../models/List";
+import { updateList } from "../services/listServices";
 import { clearContent, updateContent } from "../updateContent";
 
 export default function ListEditForm(selectedList) {

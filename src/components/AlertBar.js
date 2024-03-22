@@ -1,10 +1,9 @@
 import {
-  addList,
   addTodo,
   getListTodos,
-  getLists,
   getTodaysTodos,
-} from "../Services";
+} from "../services/todoServices";
+import { addList } from "../services/listServices";
 import { clearContent, updateContent } from "../updateContent";
 import Nav from "./Nav";
 

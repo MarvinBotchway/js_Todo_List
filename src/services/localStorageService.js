@@ -1,16 +1,15 @@
-import Lists from "./Lists";
-import Todos from "./Todos";
+import Lists from "../data/Lists";
+import Todos from "../data/Todos";
 
-function addDefaultDataToLocalStorage() {
+(function addDefaultDataToLocalStorage() {
   if (!localStorage.getItem("Lists") && !localStorage.getItem("Todos")) {
     let strigifiedLists = JSON.stringify(Lists);
     let strigifiedTodos = JSON.stringify(Todos);
 
     localStorage.setItem("Lists", strigifiedLists);
-
     localStorage.setItem("Todos", strigifiedTodos);
   }
-}
+})();
 
 function updateDataInLocalStorage(data, type) {
   if (type == "list") {
@@ -34,8 +33,4 @@ function getDataFromLocalStorage(type) {
   return data;
 }
 
-export {
-  addDefaultDataToLocalStorage,
-  updateDataInLocalStorage,
-  getDataFromLocalStorage,
-};
+export { updateDataInLocalStorage, getDataFromLocalStorage };
