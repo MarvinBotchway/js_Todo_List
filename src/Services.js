@@ -1,12 +1,22 @@
 import Nav from "./components/Nav.js";
 import Lists from "./data/Lists.js";
 import Todos from "./data/Todos.js";
+import {
+  addDefaultDataToLocalStorage,
+  getDataFromLocalStorage,
+  updateDataInLocalStorage,
+} from "./data/localStorageService.js";
 
 let currentList = {};
 
+const addDefaultData = function () {
+  addDefaultDataToLocalStorage();
+};
+
 const addList = function (list) {
   Lists.push(list);
-  return Lists;
+  updateDataInLocalStorage(Lists, "list");
+  return getDataFromLocalStorage("list");
 };
 
 const updateList = function (newList) {
@@ -15,17 +25,21 @@ const updateList = function (newList) {
       list.title = newList.title;
     }
   });
-  return Lists;
+
+  updateDataInLocalStorage(Lists, "list");
+  return getDataFromLocalStorage("list");
 };
 
 const getLists = function () {
-  return Lists;
+  let lists = getDataFromLocalStorage("list");
+  return lists;
 };
 
 const getList = function (id) {
   let list = {};
+  let lists = getDataFromLocalStorage("list");
 
-  Lists.forEach((item) => {
+  lists.forEach((item) => {
     if (item.id == id) list = item;
   });
 
@@ -38,12 +52,14 @@ const deleteList = function (selectedList) {
       Lists.splice(i, 1);
     }
   });
-  return Lists;
+  updateDataInLocalStorage(Lists, "list");
+  return getDataFromLocalStorage("list");
 };
 
 const addTodo = function (todo) {
   Todos.push(todo);
-  return Todos;
+  updateDataInLocalStorage(Todos, "todo");
+  return getDataFromLocalStorage("todo");
 };
 const updateTodo = function (newTodo) {
   Todos.forEach((todo) => {
@@ -52,9 +68,11 @@ const updateTodo = function (newTodo) {
       todo.description = newTodo.description;
       todo.dueDate = newTodo.dueDate;
       todo.priority = newTodo.priority;
+      todo.done = newTodo.done;
     }
   });
-  return Todos;
+  updateDataInLocalStorage(Todos, "todo");
+  return getDataFromLocalStorage("todo");
 };
 
 const deleteTodo = function (selectedTodo) {
@@ -63,14 +81,15 @@ const deleteTodo = function (selectedTodo) {
       Todos.splice(i, 1);
     }
   });
-  return Todos;
+  updateDataInLocalStorage(Todos, "todo");
+  return getDataFromLocalStorage("todo");
 };
 
 const getListTodos = function (todos, list) {
   let listTodos = [];
 
   todos.forEach((todo) => {
-    if (todo.list == list) {
+    if (todo.list.id == list.id) {
       listTodos.push(todo);
     }
   });
@@ -91,7 +110,8 @@ const getTodaysTodos = function () {
 };
 
 const getTodos = function () {
-  return Todos;
+  let todos = getDataFromLocalStorage("todo");
+  return todos;
 };
 
 function getDateForInput(selectedTodo) {
@@ -124,6 +144,7 @@ const getListOrTodayTodos = function (todos, list) {
 };
 
 export {
+  addDefaultData,
   addList,
   getList,
   getLists,

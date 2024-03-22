@@ -1,5 +1,9 @@
-import { addList, deleteList, getListTodos, setCurrentList } from "../Services";
-import Todos from "../data/Todos";
+import {
+  deleteList,
+  getListTodos,
+  getTodos,
+  setCurrentList,
+} from "../Services";
 import { clearContent, updateContent } from "../updateContent";
 import AlertBar from "./AlertBar";
 import FormModal from "./FormModal";
@@ -32,7 +36,9 @@ export default function ListCard(list) {
   listCard.appendChild(buttonsSection);
 
   todosButton.addEventListener("click", () => {
+    let Todos = getTodos();
     let todos = getListTodos(Todos, list);
+
     clearContent();
     updateContent(todos, "todo");
     setCurrentList(list);

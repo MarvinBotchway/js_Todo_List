@@ -4,11 +4,12 @@ import {
   getTodos,
   updateTodo,
 } from "../Services";
+import Todo from "../models/Todo";
 import { clearContent, updateContent } from "../updateContent";
 import AlertBar from "./AlertBar";
 import FormModal from "./FormModal";
 
-export default function TodoCard(Todo) {
+export default function TodoCard(todo) {
   const Content = document.getElementById("content");
   const Header = document.getElementById("header");
   const todoCard = document.createElement("div");
@@ -22,7 +23,17 @@ export default function TodoCard(Todo) {
   const btnsContainer = document.createElement("div");
   const doneInput = document.createElement("input");
   const deleteIcon = document.createElement("span");
-  let todoSummary = Todo.getSummary();
+
+  todo = new Todo(
+    todo.id,
+    todo.list,
+    todo.title,
+    todo.description,
+    new Date(todo.dueDate),
+    todo.priority,
+    todo.done
+  );
+  let todoSummary = todo.getSummary();
 
   todoCard.dataset.id = todoSummary.id;
   todoCard.classList += "card";
@@ -43,31 +54,31 @@ export default function TodoCard(Todo) {
   deleteIcon.classList += "material-symbols-outlined";
   deleteIcon.textContent = "delete";
 
-  if (Todo.done) title.classList += "cancel";
+  if (todo.done) title.classList += "cancel";
 
   doneInput.addEventListener("change", (e) => {
     if (e.currentTarget.checked) {
-      Todo.done = true;
+      todo.done = true;
       title.classList += "cancel";
     } else {
-      Todo.done = false;
+      todo.done = false;
       title.classList = "";
     }
-    updateTodo(Todo);
+    updateTodo(todo);
   });
 
   editBtn.addEventListener("click", () => {
-    Content.appendChild(FormModal("edit-todo", Todo));
+    Content.appendChild(FormModal("edit-todo", todo));
   });
 
   deleteIcon.addEventListener("click", () => {
-    let todos = deleteTodo(Todo);
+    let todos = deleteTodo(todo);
 
-    todos = getListOrTodayTodos(todos, Todo.list);
+    todos = getListOrTodayTodos(todos, todo.list);
 
     clearContent();
     updateContent(todos, "todo");
-    Header.appendChild(AlertBar(Todo, "todo"));
+    Header.appendChild(AlertBar(todo, "todo"));
 
     setTimeout(() => {
       const alertBar = document.getElementById("alert");

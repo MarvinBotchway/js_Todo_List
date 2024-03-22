@@ -1,4 +1,4 @@
-import { getTodaysTodos } from "../Services";
+import { getLists, getTodaysTodos } from "../Services";
 import Lists from "../data/Lists";
 import { clearContent, updateContent } from "../updateContent";
 
@@ -25,9 +25,10 @@ export default (function Nav() {
       });
       btn.classList = "active-button";
       let todos = getTodaysTodos();
+      let lists = getLists();
 
       clearContent();
-      if (btn.id == "lists-btn") updateContent(Lists, "list");
+      if (btn.id == "lists-btn") updateContent(lists, "list");
       else if (btn.id == "today-btn") updateContent(todos, "todo");
     });
   });
