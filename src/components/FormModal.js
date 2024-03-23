@@ -14,7 +14,7 @@ export default function FormModal(type, selected = null) {
   FormModal.classList += "modal";
   Container.classList += "container";
   FormContainer.classList += "form-container";
-  Title.textContent = "New List";
+
   Close.id = "close";
   Close.classList += "material-symbols-outlined close";
   Close.textContent = "close";
@@ -42,12 +42,16 @@ export default function FormModal(type, selected = null) {
 
   if (type == "list") {
     FormContainer.appendChild(ListForm);
+    Title.textContent = "New List";
   } else if (type == "edit-list") {
     FormContainer.appendChild(ListEditForm(selected));
+    Title.textContent = "Edit List";
   } else if (type == "todo") {
     FormContainer.appendChild(TodoForm);
+    Title.textContent = "New Todo";
   } else if (type == "edit-todo") {
     FormContainer.appendChild(TodoEditForm(selected));
+    Title.textContent = "Edit Todo";
   }
   Container.appendChild(FormContainer);
   FormModal.appendChild(Container);
