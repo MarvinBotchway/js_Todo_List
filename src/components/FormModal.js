@@ -20,6 +20,14 @@ export default function FormModal(type, selected = null) {
   Close.textContent = "close";
 
   Close.onclick = function () {
+    let listForm = document.getElementById("list-form");
+    let listEditForm = document.getElementById("list-edit-form");
+    let addedAlert = document.getElementById("list-name-alert");
+    if (addedAlert) {
+      if (listForm) listForm.removeChild(addedAlert);
+      else if (listEditForm) listEditForm.removeChild(addedAlert);
+    }
+
     Content.removeChild(FormModal);
   };
 

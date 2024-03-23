@@ -7,14 +7,22 @@ export default (function ListForm() {
   const Label = document.createElement("label");
   const Input = document.createElement("input");
   const SubmitBtn = document.createElement("button");
+  const alert = document.createElement("p");
 
-  Label.textContent = "List Name";
-  Form.classList += "form list-form";
-  Input.type = "text";
+  Form.id = "list-form";
   Input.id = "title";
+  Input.type = "text";
+  Label.textContent = "* List Name";
+  Label.htmlFor = "title";
+  Form.classList += "form list-form";
   SubmitBtn.id = "list-submit";
   SubmitBtn.type = "submit";
   SubmitBtn.textContent = "Add";
+
+  alert.id = "list-name-alert";
+  alert.textContent = "Enter A Name For Your List!";
+  alert.style.color = "red";
+  alert.style.padding = "1rem";
 
   Input.value = "";
 
@@ -24,12 +32,21 @@ export default (function ListForm() {
 
   Form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const numberOfLists = getLists().length;
-    let lists = addList(new List(numberOfLists + 1, Input.value));
-    clearContent();
-    updateContent(lists, "list");
 
-    Input.value = "";
+    let addedAlert = document.getElementById("list-name-alert");
+    if (addedAlert) Form.removeChild(addedAlert);
+    Input.value = Input.value.trim();
+
+    if (Input.value.length < 1) {
+      Form.appendChild(alert);
+    } else {
+      const numberOfLists = getLists().length;
+      let lists = addList(new List(numberOfLists + 1, Input.value));
+      clearContent();
+      updateContent(lists, "list");
+
+      Input.value = "";
+    }
   });
 
   return Form;
