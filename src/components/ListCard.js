@@ -44,11 +44,11 @@ export default function ListCard(list) {
   });
 
   deleteIcon.addEventListener("click", () => {
-    let lists = deleteList(list);
+    let [lists, deletedTodos] = deleteList(list);
 
     clearContent();
     updateContent(lists, "list");
-    Header.appendChild(AlertBar(list, "list"));
+    Header.appendChild(AlertBar(list, "list", deletedTodos));
 
     setTimeout(() => {
       const alertBar = document.getElementById("alert");

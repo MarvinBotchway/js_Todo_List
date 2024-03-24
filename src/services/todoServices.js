@@ -13,6 +13,14 @@ const addTodo = function (todo) {
   return getDataFromLocalStorage("todo");
 };
 
+const addTodos = function (todos) {
+  let newTodos = [];
+  todos.forEach((todo) => {
+    newTodos.push(todo);
+  });
+  updateDataInLocalStorage(newTodos, "todo");
+};
+
 const updateTodo = function (newTodo) {
   Todos.forEach((todo) => {
     if (todo.id == newTodo.id) {
@@ -99,6 +107,7 @@ const getListOrTodayTodos = function (todos, list) {
 export {
   getListTodos,
   addTodo,
+  addTodos,
   updateTodo,
   deleteTodo,
   getTodaysTodos,

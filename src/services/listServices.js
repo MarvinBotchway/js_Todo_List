@@ -5,6 +5,7 @@ import {
 
 let currentList = {};
 let Lists = getDataFromLocalStorage("list");
+let Todos = getDataFromLocalStorage("todo");
 
 const addList = function (list) {
   Lists.push(list);
@@ -40,13 +41,25 @@ const getList = function (id) {
 };
 
 const deleteList = function (selectedList) {
+  let updatedLists = [];
+  let deletedTodos = [];
   Lists.forEach((list, i) => {
     if (list.id == selectedList.id) {
       Lists.splice(i, 1);
     }
   });
+
+  Todos.forEach((todo, i) => {
+    if (todo.list.id == selectedList.id) {
+      deletedTodos.push(todo);
+      Todos.splice(i, 1);
+    }
+  });
+
   updateDataInLocalStorage(Lists, "list");
-  return getDataFromLocalStorage("list");
+  updateDataInLocalStorage(Todos, "todo");
+  updatedLists = getDataFromLocalStorage("list");
+  return [updatedLists, deletedTodos];
 };
 
 const setCurrentList = function (list) {
