@@ -28,6 +28,13 @@ export default function FormModal(type, selected = null) {
       else if (listEditForm) listEditForm.removeChild(addedAlert);
     }
 
+    let todoForm = document.getElementById("todo-form");
+    let todoEditForm = document.getElementById("todo-edit-form");
+    let todoAlert = document.getElementById("todo-alert");
+    if (todoAlert) {
+      if (todoForm) todoForm.removeChild(todoAlert);
+      else if (todoEditForm) todoEditForm.removeChild(todoAlert);
+    }
     Content.removeChild(FormModal);
   };
 

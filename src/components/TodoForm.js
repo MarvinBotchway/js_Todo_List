@@ -2,6 +2,7 @@ import { clearContent, updateContent } from "../updateContent";
 import Todo from "../models/Todo";
 import { getCurrentList, getList } from "../services/listServices";
 import { addTodo, getListTodos, getTodos } from "../services/todoServices";
+import { priorityEnum } from "../enums/priorityEnum";
 
 export default (function TodoForm() {
   const Form = document.createElement("form");
@@ -12,8 +13,14 @@ export default (function TodoForm() {
   const DueDateLabel = document.createElement("label");
   const DueDateInput = document.createElement("input");
   const PriorityLabel = document.createElement("label");
-  const PriorityInput = document.createElement("input");
+  const PrioritySelect = document.createElement("select");
   const SubmitBtn = document.createElement("button");
+
+  const SeletOption = document.createElement("option");
+  const LowOption = document.createElement("option");
+  const MediumOption = document.createElement("option");
+  const HighOption = document.createElement("option");
+  const alert = document.createElement("p");
 
   TitleLabel.textContent = "Title";
   DescriptionLabel.textContent = "Description";
@@ -23,15 +30,34 @@ export default (function TodoForm() {
 
   Form.classList += "form todo-form";
 
+  Form.id = "todo-form";
+  alert.id = "todo-alert";
+  alert.textContent = "Please fill in the entire form.";
+  alert.style.color = "red";
+  alert.style.padding = "1rem";
+
   TitleInput.id = "todo-title";
   TitleInput.type = "text";
   DescriptionInput.id = "todo-desc";
   DescriptionInput.type = "text";
   DueDateInput.id = "todo-date";
   DueDateInput.type = "date";
-  PriorityInput.id = "todo-priority";
-  PriorityInput.type = "text";
+  PrioritySelect.id = "priority-select";
   SubmitBtn.type = "submit";
+
+  SeletOption.value = -1;
+  SeletOption.textContent = "-- select a priority --";
+  LowOption.value = priorityEnum.LOW;
+  LowOption.textContent = "Low";
+  MediumOption.value = priorityEnum.MEDIUM;
+  MediumOption.textContent = "Medium";
+  HighOption.value = priorityEnum.HIGH;
+  HighOption.textContent = "High";
+
+  PrioritySelect.appendChild(SeletOption);
+  PrioritySelect.appendChild(LowOption);
+  PrioritySelect.appendChild(MediumOption);
+  PrioritySelect.appendChild(HighOption);
 
   TitleLabel.appendChild(TitleInput);
   Form.appendChild(TitleLabel);
@@ -39,32 +65,49 @@ export default (function TodoForm() {
   Form.appendChild(DescriptionLabel);
   DueDateLabel.appendChild(DueDateInput);
   Form.appendChild(DueDateLabel);
-  PriorityLabel.appendChild(PriorityInput);
+  PriorityLabel.appendChild(PrioritySelect);
   Form.appendChild(PriorityLabel);
   Form.appendChild(SubmitBtn);
 
   Form.addEventListener("submit", (e) => {
     e.preventDefault();
-    let listId = getCurrentList().id;
-    let todos = getTodos();
-    let id = todos.length + 1;
-    let list = getList(listId);
-    let title = TitleInput.value;
-    let desc = DescriptionInput.value;
-    let dueDate = new Date(DueDateInput.value);
-    let priority = PriorityInput.value;
 
-    const newTodo = new Todo(id, list, title, desc, dueDate, priority);
+    let addedAlert = document.getElementById("todo-alert");
+    if (addedAlert) Form.removeChild(addedAlert);
 
-    let newTodos = addTodo(newTodo);
-    let listTodos = getListTodos(newTodos, list);
-    clearContent();
-    updateContent(listTodos, "todo");
+    TitleInput.value = TitleInput.value.trim();
+    DescriptionInput.value = DescriptionInput.value.trim();
 
-    TitleInput.value = "";
-    DescriptionInput.value = "";
-    DueDateInput.value = "";
-    PriorityInput.value = "";
+    if (
+      TitleInput.value.length < 1 ||
+      DescriptionInput.value.length < 1 ||
+      DueDateInput.value.length < 1 ||
+      PrioritySelect.value < 0
+    ) {
+      Form.appendChild(alert);
+    } else {
+      let listId = getCurrentList().id;
+      let todos = getTodos();
+      let id = todos.length + 1;
+      let list = getList(listId);
+      let title = TitleInput.value;
+      let desc = DescriptionInput.value;
+      let dueDate = new Date(DueDateInput.value);
+      let priority = PrioritySelect.value;
+      let done = false;
+
+      const newTodo = new Todo(id, list, title, desc, dueDate, priority, done);
+
+      let newTodos = addTodo(newTodo);
+      let listTodos = getListTodos(newTodos, list);
+      clearContent();
+      updateContent(listTodos, "todo");
+
+      TitleInput.value = "";
+      DescriptionInput.value = "";
+      DueDateInput.value = "";
+      PrioritySelect.value = priorityEnum.LOW;
+    }
   });
 
   return Form;
